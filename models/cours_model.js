@@ -12,7 +12,7 @@ const Cours = {
 
   // Récupérer tous les cours
   getAllCours: async () => {
-    const result = await pool.query('SELECT * FROM "A9ra_brk".cours');
+    const result = await pool.query('SELECT * FROM "A9ra_brk"."Cours"');
     return result.rows;
   },
 
@@ -41,6 +41,15 @@ const Cours = {
       [id_cour]
     );
     return result.rows[0];
+  },
+  // Ajouter cette méthode pour vérifier l'appartenance à une playlist
+async isCoursInPlaylist(coursId, playlistId) {
+    const result = await pool.query(
+      `SELECT 1 FROM "A9ra_brk".playlist_cours 
+       WHERE id_cour = $1 AND id_playlist = $2`,
+      [coursId, playlistId]
+    );
+    return result.rowCount > 0;
   }
 };
 

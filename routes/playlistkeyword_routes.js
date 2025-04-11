@@ -1,6 +1,6 @@
 const express = require('express');
 const Router = express.Router();
-const playlistKeyword = require('../controllers/playlistkeywordcontroller');
+const playlistKeyword = require('../controller/playlistkeywordcontroller');
 
 Router.post('/playlist-keyword', playlistKeyword.addKeywordToPlaylist);
 Router.get('/playlist-keyword/:id_playlist', playlistKeyword.getKeywordsForPlaylist);

@@ -1,6 +1,6 @@
 const express = require('express');
 const Router = express.Router();
-const keyword = require('../controllers/keywordController');
+const keyword = require('../controller/keywordController');
 
 Router.post('/keyword', keyword.addKeyword);
 Router.get('/keyword', keyword.getAllKeywords);

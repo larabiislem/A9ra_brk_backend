@@ -1,4 +1,4 @@
-const Cours = require('../models/cours_modell');
+const Cours = require('../models/cours_model');
 const { catchAsync, AppError, handleDBErrors } = require('./error');
 
 exports.addCours = handleDBErrors(catchAsync(async (req, res, next) => {
@@ -80,3 +80,32 @@ exports.deleteCours = handleDBErrors(catchAsync(async (req, res, next) => {
         data: null
     });
 }));
+
+// Ajouter ces nouvelles méthodes
+exports.getCoursInPlaylist = handleDBErrors(catchAsync(async (req, res, next) => {
+    const { id_playlist } = req.params;
+    const cours = await PlaylistCour.getCoursInPlaylist(id_playlist);
+    
+    if (!cours || cours.length === 0) {
+      return next(new AppError('No courses found in this playlist', 404));
+    }
+  
+    res.status(200).json({
+      status: 'success',
+      data: {
+        cours
+      }
+    });
+  }));
+  
+  exports.isCoursInPlaylist = handleDBErrors(catchAsync(async (req, res, next) => {
+    const { id_playlist, id_cour } = req.params;
+    const exists = await Cours.isCoursInPlaylist(id_cour, id_playlist);
+    
+    res.status(200).json({
+      status: 'success',
+      data: {
+        exists
+      }
+    });
+  }));

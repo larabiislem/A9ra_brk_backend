@@ -1,6 +1,6 @@
 const express = require('express');
 const Router = express.Router();
-const abonement = require('../controllers/abonement_controller');
+const abonement = require('../controller/abonnemnt_controler');
 
 Router.post('/abonement', abonement.addAbonnement);
 Router.delete('/abonement', abonement.deleteAbonnement);

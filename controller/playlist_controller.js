@@ -1,6 +1,6 @@
-const  playlist = require("../models/playlist_model"); 
+const playlist = require("../models/playlist_model"); 
 const { catchAsync, AppError, handleDBErrors } = require("./error");
-
+const RoomService = require('../models/room_model');
 
 const playlistController = {
     addPlaylist: catchAsync(async (req, res, next) => {
@@ -23,8 +23,7 @@ const playlistController = {
             }
         });
     }),
-
-    getPlaylistById : catchAsync(async (req, res, next) => {
+    getPlaylistById: catchAsync(async (req, res, next) => {
         const { id_playlist } = req.params;
         const playlistData = await playlist.getPlaylistById(id_playlist);
         if (!playlistData) {
@@ -57,9 +56,34 @@ const playlistController = {
                 keyword: newKeyword
             }
         });
-    })
+    }),
+    addCoursToPlaylist: catchAsync(async (req, res, next) => {
+        const { id_playlist, id_cour } = req.body;
+        const { id_user } = req.params; // ID de l'utilisateur propriétaire
 
+        // 1. Vérifier que l'utilisateur possède la playlist
+        const userPlaylists = await playlist.getPlaylistsByUserId(id_user);
+        if (!userPlaylists.some(p => p.id_playlist === id_playlist)) {
+            return next(new AppError('Unauthorized - Not your playlist', 403));
+        }
 
-}
+        // 2. Ajouter le cours à la playlist
+        const relation = await PlaylistCour.addPlaylistCour(id_playlist, id_cour);
+
+        // 3. Créer automatiquement une salle si elle n'existe pas
+        const cours = await Cours.getCoursById(id_cour);
+        if (!cours.room_name) {
+            const roomName = await RoomService.createRoomForCours(id_cour, `room-${id_cour}`);
+        }
+
+        res.status(201).json({
+            status: 'success',
+            data: {
+                relation,
+                roomCreated: !cours.room_name
+            }
+        });
+    }),
+};
+
 module.exports = playlistController;
-  

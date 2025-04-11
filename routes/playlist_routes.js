@@ -1,11 +1,16 @@
 const express = require('express');
-const Router = express.Router();
-const abonement = require('../controllers/abonement_controller');
+const router = express.Router();
+const playlistController = require('../controller/playlist_controller');
 
-Router.post('/abonement', abonement.addAbonnement);
-Router.delete('/abonement', abonement.deleteAbonnement);
-Router.get('/abonement/abonnes/:id_utilisateur', abonement.getAbonnesByUser);
-Router.get('/abonement/abonnements/:id_utilisateur', abonement.getAbonnementsByUser);
-Router.get('/abonement/check/:id_abonne/:id_abonnement', abonement.checkAbonnement);
 
-module.exports = Router;
+// Routes Playlist
+router.post('/', playlistController.addPlaylist);
+router.get('/', playlistController.getAllPlaylists);
+router.get('/:id_playlist', playlistController.getPlaylistById);
+router.delete('/:id_playlist', playlistController.deletePlaylist);
+router.post('/:id_playlist/keywords', playlistController.ajoutMotCleDansPlaylist);
+
+// Nouvelle route pour ajouter un cours à une playlist
+router.post('/:id_user/cours', playlistController.addCoursToPlaylist);
+
+module.exports = router;

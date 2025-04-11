@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-   "start": "node app.js",
+    "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "author": "Sekfali Rayan",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "livekit-server-sdk": "^2.12.0"
+  }
 }

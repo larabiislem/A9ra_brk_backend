@@ -23,7 +23,21 @@ const PlaylistCour = {
       [id_playlist]
     );
     return result.rows[0];
-  }
+  },
+
+// Récupérer tous les cours d'une playlist avec leurs salles
+getCoursInPlaylist: async (id_playlist) => {
+  const result = await pool.query(
+    `SELECT c.* FROM "A9ra_brk"."Cours" c
+     JOIN "A9ra_brk".playlist_cours pc ON c."Id_cour" = pc.id_cour
+     WHERE pc.id_playlist = $1`,
+    [id_playlist]
+  );
+  return result.rows;
+},
+
+
+
 };
 
 module.exports = PlaylistCour;
