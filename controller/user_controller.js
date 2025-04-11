@@ -1,5 +1,11 @@
 const User = require('../models/user_model');
 const { catchAsync, AppError, handleDBErrors } = require('./error');
+const jwt = require('jsonwebtoken');
+
+const token = (id, role) => {
+    return jwt.sign({ id, role }, process.env.JWT_SECRET);
+  };
+  
 
 exports.createUser = handleDBErrors(catchAsync(async (req, res, next) => {
     const { id_utilisateur, nom, prenom, email, password, age, telephone } = req.body;
@@ -17,11 +23,16 @@ exports.createUser = handleDBErrors(catchAsync(async (req, res, next) => {
         password,
         age,
         telephone,
-        adresse
-    }, keywords);
+        adresse,
+     keywords});
     
+    const tok = token(user.id_utilisateur, 'freeuser');
+
+    // 6) Retourner la réponse avec le token
     res.status(201).json({
-        status: 'success',
+      status: 'success',
+      token: tok,
+      
         data: {
             user
         }
@@ -40,9 +51,12 @@ exports.login = handleDBErrors(catchAsync(async (req, res, next) => {
     if (!user || !(await User.comparePassword(password, user.mot_de_passe))) {
         return next(new AppError('Incorrect email or password', 401));
     }
+    const tok = token(user.id_utilisateur, 'freeuser');
 
+    // 5) Retourner la réponse avec le token
     res.status(200).json({
-        status: 'success',
+      status: 'success',
+      token: tok,
         data: {
             user
         }
