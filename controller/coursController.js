@@ -1,4 +1,4 @@
-const Cours = require('../models/cours_model');
+const Cours = require('../models/cours_modell');
 const { catchAsync, AppError, handleDBErrors } = require('./error');
 
 exports.addCours = handleDBErrors(catchAsync(async (req, res, next) => {

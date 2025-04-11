@@ -9,7 +9,9 @@ const courRouter = require('./routes/cours_routes');
 const playlistCourRouter = require('./routes/playlistCour_routes'); 
 const keywordRouter = require('./routes/keyword_routes');    
 const playlistKeywordRouter = require('./routes/playlistkeyword_routes'); 
-const userPlaylistRouter = require('./routes/'); 
+const abonementRouter = require('./routes/abonnement_router');
+
+
 
 
 
@@ -17,7 +19,14 @@ const userPlaylistRouter = require('./routes/');
 
 const app = express();
 app.use(express.json());
-
+app.use('/api', playlistCourRouter);
+app.use('/api', playlistRouter);
+app.use('/api', userRouter); 
+app.use('/api', courRouter);
+app.use('/api', playlistKeywordRouter);
+app.use('/api', keywordRouter);
+app.use('/api', abonementRouter);
+  
 
 
 
