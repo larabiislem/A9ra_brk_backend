@@ -1,7 +1,16 @@
-require('dotenv').config(); // Charger les variables d'environnement
-const express = require('express'); // Importer Express
-const pool = require('./config/db'); // Importer la connexion à la base de données
+require('dotenv').config(); 
+const express = require('express'); 
+const pool = require('./config/db'); 
 const errorHandler = require("./controller/errorHandler");
+
+const playlistRouter = require('./routes/playlist_routes'); 
+const userRouter = require('./routes/user_routes'); 
+const courRouter = require('./routes/cours_routes'); 
+const playlistCourRouter = require('./routes/playlistCour_routes'); 
+const keywordRouter = require('./routes/keyword_routes');    
+const playlistKeywordRouter = require('./routes/playlistkeyword_routes'); 
+const userPlaylistRouter = require('./routes/'); 
+
 
 
 
