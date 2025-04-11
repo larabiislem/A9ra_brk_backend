@@ -19,3 +19,5 @@ const playlist_cour = {
     },
 
 }
+
+module.exports = playlist_cour;

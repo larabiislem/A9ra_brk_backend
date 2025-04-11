@@ -19,5 +19,7 @@ const AbonementModel = {
 
 
 }
+
+module.exports = AbonementModel;
         
     
