@@ -32,3 +32,16 @@ exports.generateRoomToken = handleDBErrors(catchAsync(async (req, res, next) => 
     }
   });
 }));
+
+exports.createRoom = handleDBErrors(catchAsync(async (req, res, next) => {
+    const { roomName, userId } = req.body;
+    
+    const room = await RoomService.createRoom(roomName, userId);
+    
+    res.status(201).json({
+        status: 'success',
+        data: {
+        room
+        }
+    });
+    }));

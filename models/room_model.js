@@ -1,5 +1,6 @@
 const { RoomServiceClient } = require('livekit-server-sdk');
 const pool = require('../db');
+const { create } = require('./user_model');
 
 const livekitHost = process.env.LIVEKIT_HOST;
 const apiKey = process.env.LIVEKIT_API_KEY;
