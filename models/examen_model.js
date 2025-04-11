@@ -1,4 +1,4 @@
-const examen = require('../config/db');
+const examen = require('../db');
 
 const ExamenModel = {
 

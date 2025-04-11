@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+const pool = require('../db');
 
 const Playlist = {
   // Ajouter une nouvelle playlist et la lier à un utilisateur

@@ -2,10 +2,10 @@ const User = require('../models/user_model');
 const { catchAsync, AppError, handleDBErrors } = require('./error');
 
 exports.createUser = handleDBErrors(catchAsync(async (req, res, next) => {
-    const { id_utilisateur, nom, prenom, email, password, age, telephone, adresse } = req.body;
+    const { id_utilisateur, nom, prenom, email, password, age, telephone } = req.body;
     const keywords = req.body.keywords || [];
 
-    if (!id_utilisateur || !nom || !prenom || !email || !password || !age || !telephone || !adresse) {
+    if (!id_utilisateur || !nom || !prenom || !email || !password || !age || !telephone ) {
         return next(new AppError('Missing fields', 400));
     }
 

@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+const pool = require('../db');
 
 const Keyword = {
   // Ajouter un nouveau mot-clé

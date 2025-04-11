@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+const pool = require('../db');
 
 const Cours = {
   // Ajouter un nouveau cours

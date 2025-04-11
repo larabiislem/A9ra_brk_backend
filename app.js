@@ -1,7 +1,7 @@
 require('dotenv').config(); 
 const express = require('express'); 
 const { RoomServiceClient, AccessToken } = require('livekit-server-sdk');
-const pool = require('./config/db'); 
+const pool = require('./db'); 
 const errorHandler = require("./controller/errorHandler");
 
 

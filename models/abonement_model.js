@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+const pool = require('../db');
 
 const AbonementModel = {
   // Ajouter un abonnement (un utilisateur suit un autre utilisateur)

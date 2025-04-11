@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+const pool = require('../db');
 
 const PlaylistKeyword = {
   // Ajouter un mot-clé à une playlist
