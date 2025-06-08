@@ -2,7 +2,7 @@
 
 ## Peer-to-Peer Knowledge Exchange Platform
 
-In today's educational landscape, many students face significant barriers to quality learning resources. Knowledge remains locked away in expensive institutions, specialized communities, or privileged regions, creating an uneven landscape for learners worldwide. Technology offers us a unique opportunity to break down these walls and revolutionize how knowledge flows between individual.
+In today's educational landscape, many students face significant barriers to quality learning resources. Knowledge remains locked away in expensive institutions, specialized communities, or privileged regions, creating an uneven landscape for learners worldwide. Technology offers us a unique opportunity to break down these walls and revolutionize how knowledge flows between individuals.
 
 **Problem Statement:**  
 How can we use technology to make learning open to everyone, connect learners with experts, and build communities where people learn together?
